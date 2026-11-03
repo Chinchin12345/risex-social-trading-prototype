@@ -612,7 +612,7 @@
       var actions = s === 'stopped' ? '<div class="qa">' + btn('Back to Copy Trading', { v: 'tertiary', s: 's36', act: 'to-hub' }) + '</div>'
         : '<div class="qa">' + btn('Edit', { v: 'tertiary', s: 's36', act: 'mc-edit' }) + (s === 'active' ? btn('Pause', { v: 'tertiary', s: 's36', act: 'sheet-pause' }) : btn('Resume', { v: 'tertiary', s: 's36', act: 'mc-resume' })) + btn('Stop', { v: 'tertiary', s: 's36', act: 'sheet-stop' }) + '</div>';
       var logs = c.log.slice().reverse().map(function (l, i) { return '<div class="log"><span class="el' + (i === 0 && c.log.length > 1 ? ' ter' : '') + '"></span><div class="t"><b>' + l.title + '</b><p>' + l.sub + '</p></div><time>' + F.hm(l.t) + '</time></div>'; }).join('');
-      return (s === 'active' ? navBar('', { backLabel: 'Back to Trading', backAct: 'go-trade' }) : navBar('kestrel · Auto Copy')) + '<div class="body"><div class="pad g12"><div class="card p14 cg10">' +
+      return navBar('', { backLabel: 'Back to Trading', backAct: 'go-trade' }) + '<div class="body"><div class="pad g12"><div class="card p14 cg10">' +
         '<div class="mc-h"><span class="av av36">K</span><div class="t"><span class="h16">kestrel</span><span class="t11">' + sub + '</span></div>' + chip + '</div><div class="rows">' +
         kv('Allocation', money(a)) + kv('In positions (margin)', '$0.00') + kv('Free to copy', money(a)) + kv('Unrealized PnL', '$0.00') + kv('Realized PnL', '$0.00') + kv('Fees paid', '$0.00') +
         kv('Stop loss / position', s === 'stopped' ? '—' : slShort(c)) + '</div>' + actions + '</div>' +
