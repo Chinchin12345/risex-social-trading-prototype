@@ -111,6 +111,10 @@ i[data-icon] svg { width: 100%; height: 100%; }
 .nav-title { flex: 1; min-width: 0; font-weight: 600; font-size: 16px; line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .nav-title.dim { color: var(--text-disabled); }
 .nav-spacer { width: 44px; flex: none; }
+.nav-back-lbl { display: flex; align-items: center; gap: 4px; height: 44px; padding-right: 12px; border-radius: 8px; color: var(--text-primary); min-width: 0; }
+.nav-back-lbl .nav-btn { pointer-events: none; }
+@media (hover: hover) { .nav-back-lbl:hover { background: var(--bg-secondary); } }
+.nav-back-lbl:active { background: var(--bg-tertiary); }
 @media (hover: hover) { .nav-btn:hover { background: var(--bg-secondary); } }
 .nav-btn:active { background: var(--bg-tertiary); }
 .dot { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--bg-error-solid); box-shadow: 0 0 0 2px var(--bg-primary); }

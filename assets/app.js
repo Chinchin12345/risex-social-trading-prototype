@@ -229,6 +229,8 @@
   var bellBadge = function () { return st.notif.unread ? '<span class="dot" aria-hidden="true"></span>' : ''; };
   function navBar(title, o) {
     o = o || {};
+    // Figma 11 · My Copy: the whole "‹ Back to Trading" label is the back control and goes to Trade
+    if (o.backLabel) return '<header class="nav"><button type="button" class="nav-back-lbl" data-act="' + o.backAct + '"><span class="nav-btn" aria-hidden="true">' + I('chev-left', 'i20') + '</span><span class="nav-title">' + o.backLabel + '</span></button></header>';
     return '<header class="nav">' + (o.back === false ? '<span class="nav-spacer"></span>' : '<button type="button" class="nav-btn" data-act="' + (o.backAct || 'back') + '" aria-label="Back">' + I('chev-left', 'i20') + '</button>') +
       '<h1 class="nav-title' + (o.dim ? ' dim' : '') + '">' + title + '</h1>' +
       (o.bell ? '<button type="button" class="nav-btn" data-act="bell" aria-label="Notifications' + (st.notif.unread ? ', 1 unread' : '') + '">' + I('bell18', 'i18') + bellBadge() + '</button>' : '') + '</header>';
@@ -610,7 +612,7 @@
       var actions = s === 'stopped' ? '<div class="qa">' + btn('Back to Copy Trading', { v: 'tertiary', s: 's36', act: 'to-hub' }) + '</div>'
         : '<div class="qa">' + btn('Edit', { v: 'tertiary', s: 's36', act: 'mc-edit' }) + (s === 'active' ? btn('Pause', { v: 'tertiary', s: 's36', act: 'sheet-pause' }) : btn('Resume', { v: 'tertiary', s: 's36', act: 'mc-resume' })) + btn('Stop', { v: 'tertiary', s: 's36', act: 'sheet-stop' }) + '</div>';
       var logs = c.log.slice().reverse().map(function (l, i) { return '<div class="log"><span class="el' + (i === 0 && c.log.length > 1 ? ' ter' : '') + '"></span><div class="t"><b>' + l.title + '</b><p>' + l.sub + '</p></div><time>' + F.hm(l.t) + '</time></div>'; }).join('');
-      return navBar('kestrel · Auto Copy') + '<div class="body"><div class="pad g12"><div class="card p14 cg10">' +
+      return (s === 'active' ? navBar('', { backLabel: 'Back to Trading', backAct: 'go-trade' }) : navBar('kestrel · Auto Copy')) + '<div class="body"><div class="pad g12"><div class="card p14 cg10">' +
         '<div class="mc-h"><span class="av av36">K</span><div class="t"><span class="h16">kestrel</span><span class="t11">' + sub + '</span></div>' + chip + '</div><div class="rows">' +
         kv('Allocation', money(a)) + kv('In positions (margin)', '$0.00') + kv('Free to copy', money(a)) + kv('Unrealized PnL', '$0.00') + kv('Realized PnL', '$0.00') + kv('Fees paid', '$0.00') +
         kv('Stop loss / position', s === 'stopped' ? '—' : slShort(c)) + '</div>' + actions + '</div>' +
